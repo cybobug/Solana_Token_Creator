@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Token Management App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <nav>
+            <h1>Solana Token Management</h1>
+            <button id="connectWalletBtn" class="primary-btn">Connect Wallet</button>
+            <button id="disconnectWalletBtn" class="secondary-btn" style="display: none;">Disconnect</button>
+        </nav>
+
+        <div class="notification" id="notification" style="display: none;">
+            <p id="notificationText"></p>
+            <button id="closeNotification">×</button>
+        </div>
+
+        <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+            <div class="spinner"></div>
+            <p id="loadingText">Processing transaction...</p>
+        </div>
+
+        <div class="wallet-info" id="walletInfo" style="display: none;">
+            <h3>Wallet Connected</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h4>Address</h4>
+                    <p id="walletAddress"></p>
+                    <button id="copyAddressBtn" class="icon-btn">Copy</button>
+                </div>
+                <div class="info-item">
+                    <h4>SOL Balance</h4>
+                    <p><span id="walletBalance"></span> SOL</p>
+                    <button id="refreshBalanceBtn" class="icon-btn">Refresh</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="actions">
+            <div class="card">
+                <h2>Create Token</h2>
+                <p class="card-description">Create a new SPL token on Solana devnet</p>
+                <div class="form-group">
+                    <label for="tokenName">Token Name</label>
+                    <input type="text" id="tokenName" placeholder="Enter token name">
+                </div>
+                <div class="form-group">
+                    <label for="tokenSymbol">Token Symbol</label>
+                    <input type="text" id="tokenSymbol" placeholder="Enter token symbol">
+                </div>
+                <div class="form-group">
+                    <label for="tokenDecimals">Decimals</label>
+                    <input type="number" id="tokenDecimals" placeholder="9" value="9">
+                </div>
+                <button id="createTokenBtn" class="action-btn">Create Token</button>
+            </div>
+
+            <div class="card">
+                <h2>Mint Token</h2>
+                <p class="card-description">Mint new tokens to a wallet address</p>
+                <div class="form-group">
+                    <label for="mintTokenAddress">Token Address</label>
+                    <input type="text" id="mintTokenAddress" placeholder="Enter token mint address">
+                </div>
+                <div class="form-group">
+                    <label for="mintTokenAmount">Amount</label>
+                    <input type="number" id="mintTokenAmount" placeholder="Enter amount to mint">
+                </div>
+                <div class="form-group">
+                    <label for="sendTokenRecipient">Recipient Address (optional)</label>
+                    <input type="text" id="sendTokenRecipient" placeholder="Default: Your wallet">
+                </div>
+                <button id="mintTokenBtn" class="action-btn">Mint Token</button>
+            </div>
+
+            <div class="card">
+                <h2>Send Token</h2>
+                <p class="card-description">Transfer tokens to another wallet</p>
+                <div class="form-group">
+                    <label for="sendTokenAddress">Token Address</label>
+                    <input type="text" id="sendTokenAddress" placeholder="Enter token address">
+                </div>
+                <div class="form-group">
+                    <label for="recipientAddress">Recipient Address</label>
+                    <input type="text" id="recipientAddress" placeholder="Enter recipient wallet address">
+                </div>
+                <div class="form-group">
+                    <label for="sendAmount">Amount</label>
+                    <input type="number" id="sendAmount" placeholder="Enter amount to send">
+                </div>
+                <button id="sendTokenBtn" class="action-btn">Send Token</button>
+            </div>
+        </section>
+
+        <section class="token-holdings" id="tokenHoldings">
+            <h2>Your Token Holdings</h2>
+            <div class="token-list" id="tokenList">
+                <p class="empty-state">Connect your wallet to view tokens</p>
+            </div>
+        </section>
+
+        <section class="transaction-history">
+            <h2>Transaction History</h2>
+            <button id="refreshHistoryBtn" class="secondary-btn small">Refresh</button>
+            <div class="transaction-list" id="transactionList">
+                <p class="empty-state">No transactions found</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Powered by Solana | Devnet</p>
+        <a href="https://explorer.solana.com/?cluster=devnet" target="_blank">View in Explorer</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@solana/spl-token@latest/lib/index.iife.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

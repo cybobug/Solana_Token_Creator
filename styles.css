@@ -1,0 +1,557 @@
+/* General Styling */
+:root {
+    --primary-color: #9945FF;
+    --secondary-color: #14F195;
+    --dark-bg: #14151A;
+    --card-bg: #1E2029;
+    --light-text: #F7F8F9;
+    --secondary-text: #C4C6CC;
+    --border-color: #2F3146;
+    --error-color: #FF6B6B;
+    --success-color: #14F195;
+    --warning-color: #FFD166;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
+body {
+    background: var(--dark-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+#app {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background: var(--card-bg);
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color);
+}
+
+nav h1 {
+    color: var(--light-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+nav h1::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #8335E0;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--light-text);
+    border: 1px solid var(--border-color);
+}
+
+.secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.action-btn {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    padding: 12px;
+    margin-top: 16px;
+    font-size: 15px;
+}
+
+.action-btn:hover {
+    background-color: #8335E0;
+    transform: translateY(-2px);
+}
+
+.icon-btn {
+    background-color: transparent;
+    color: var(--secondary-text);
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+button:disabled {
+    background-color: #4A4B57;
+    color: #8E8F99;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 350px;
+    padding: 15px 20px;
+    background-color: var(--card-bg);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+    border-left-color: var(--success-color);
+}
+
+.notification.error {
+    border-left-color: var(--error-color);
+}
+
+.notification.warning {
+    border-left-color: var(--warning-color);
+}
+
+#closeNotification {
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-indicator p {
+    margin-top: 15px;
+    color: var(--light-text);
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Wallet Info */
+.wallet-info {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.wallet-info h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--light-text);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item h4 {
+    color: var(--secondary-text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.info-item p {
+    word-break: break-all;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 6px;
+    font-family: monospace;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Action Cards */
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+.card {
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--light-text);
+}
+
+.card-description {
+    color: var(--secondary-text);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: var(--secondary-text);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--light-text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+}
+
+input::placeholder {
+    color: #5A5B66;
+}
+
+/* Token Holdings */
+.token-holdings {
+    margin-bottom: 30px;
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.token-holdings h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.token-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.token-item {
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.token-item:hover {
+    transform: translateY(-2px);
+}
+
+.token-symbol {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--secondary-color);
+}
+
+.token-name {
+    font-size: 14px;
+    color: var(--secondary-text);
+    margin-bottom: 8px;
+}
+
+.token-balance {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.token-address {
+    font-size: 12px;
+    color: var(--secondary-text);
+    font-family: monospace;
+    word-break: break-all;
+    opacity: 0.8;
+}
+
+/* Transaction History */
+.transaction-history {
+    margin-bottom: 20px;
+    padding: 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.transaction-history h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+#refreshHistoryBtn {
+    float: right;
+    margin-top: 5px;
+}
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transaction-item {
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.transaction-item:hover {
+    transform: translateY(-2px);
+}
+
+.transaction-details {
+    flex: 1;
+}
+
+.transaction-type {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--light-text);
+}
+
+.transaction-signature {
+    font-size: 12px;
+    color: var(--secondary-text);
+    font-family: monospace;
+    word-break: break-all;
+    margin-bottom: 4px;
+}
+
+.transaction-time {
+    font-size: 12px;
+    color: var(--secondary-text);
+}
+
+.transaction-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+.status-confirmed {
+    background-color: rgba(20, 241, 149, 0.2);
+    color: var(--success-color);
+}
+
+.status-pending {
+    background-color: rgba(255, 209, 102, 0.2);
+    color: var(--warning-color);
+}
+
+.view-transaction {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.view-transaction:hover {
+    background-color: rgba(153, 69, 255, 0.1);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--secondary-text);
+    padding: 30px 0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--secondary-text);
+    font-size: 14px;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    #app {
+        margin: 15px;
+        padding: 15px;
+    }
+    
+    .actions {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    nav h1 {
+        margin-bottom: 10px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .transaction-status, .view-transaction {
+        align-self: flex-end;
+    }
+}
